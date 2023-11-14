@@ -8,12 +8,7 @@ import HomeScreen from "./app/screens/HomeScreen";
 export default function App() {
   return (
     <View style={styles.container}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Home" component={HomeScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <HomeScreen />
     </View>
   );
 }
@@ -25,3 +20,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+/*
+<NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Home" component={HomeScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+*/
