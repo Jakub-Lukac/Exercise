@@ -10,6 +10,7 @@ import {
   TouchableHighlight,
 } from "react-native";
 
+
 function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

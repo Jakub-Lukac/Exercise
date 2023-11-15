@@ -7,58 +7,47 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+import { useWindowDimensions } from "react-native";
+import { TabView, SceneMap } from "react-native-tab-view";
 
-function HomeScreen(props) {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    getData();
-  }, []);
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-  const getData = async () => {
-    /*const URL = "https://swapi.dev/api/people/";
+import PeopleScreen from "./PeopleScreen";
+import FilmsScreen from "./FilmsScreen";
+import VehiclesScreen from "./VehiclesScreen";
 
-    fetch(URL)
-      .then((res) => {
-        return res.json;
-      })
-      .then((resData) => {
-        setData(resData);
-        console.log(resData);
-      });*/
-    try {
-      //let response = await fetch("https://fakestoreapi.com/products/"); // this one works
-      let response = await fetch("https://swapi.dev/api/films/");
-      let resData = await response.json();
-      setData(resData.results);
-      console.log("Works");
-      console.log(resData.results);
-      //console.log(resData.result[0].name); //getting only Luke Skywalker
-    } catch (error) {
-      console.log("UPPS " + error);
-      /*
-      <FlatList
-        data={data}
-        renderItem={({ item }) => (
-          <View>
-            <Text>{item.id}</Text>
-          </View>
-        )}
-      /> 
-      */
-    }
-  };
+function HomeScreen({ props }) {
+  const layout = useWindowDimensions();
+
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    { key: "first", title: "People" },
+    { key: "second", title: "Films" },
+    { key: "third", title: "Vehicles" },
+  ]);
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.loginButton} onPress={getData}>
-        <Text style={styles.text}>Hello</Text>
-      </TouchableOpacity>
-      {data.map((item, key) => {
-        return <Text key={key}>{item.title}</Text>;
-      })}
-    </View>
+    <Tab.Navigator>
+      <Tab.Screen
+        name="People"
+        component={PeopleScreen}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Films"
+        component={FilmsScreen}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Vehicles"
+        component={VehiclesScreen}
+        options={{ headerShown: false }}
+      />
+    </Tab.Navigator>
   );
 }
+
+const Tab = createBottomTabNavigator();
 
 const styles = StyleSheet.create({
   container: {
