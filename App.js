@@ -13,6 +13,7 @@ import VehiclesScreen from "./app/screens/VehiclesScreen";
 import PeopleDetailsScreen from "./app/screens/PeopleDetailsScreen";
 import FilmsDetailsScreen from "./app/screens/FilmsDetailScreen";
 import VehiclesDetailsScreen from "./app/screens/VehiclesDetailsScreen";
+import AddItemScreen from "./app/screens/AddItemScreen";
 
 export default function App() {
   return (
@@ -27,7 +28,7 @@ export default function App() {
           <Stack.Screen
             name="Home"
             component={HomeScreen}
-            options={{ title: "Home" }}
+            options={{ title: "Home", headerShown: false }}
           />
           <Stack.Screen
             name="PeopleDetails"
@@ -43,6 +44,11 @@ export default function App() {
             name="VehiclesDetails"
             component={VehiclesDetailsScreen}
             options={{ title: "Vehicles Details" }}
+          />
+          <Stack.Screen
+            name="AddItemScreen"
+            component={AddItemScreen}
+            options={{ title: "Add Item" }}
           />
         </Stack.Navigator>
       </NavigationContainer>

@@ -15,34 +15,15 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import PeopleScreen from "./PeopleScreen";
 import FilmsScreen from "./FilmsScreen";
 import VehiclesScreen from "./VehiclesScreen";
+import AddItemScreen from "./AddItemScreen";
 
 function HomeScreen({ props }) {
-  const layout = useWindowDimensions();
-
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
-    { key: "first", title: "People" },
-    { key: "second", title: "Films" },
-    { key: "third", title: "Vehicles" },
-  ]);
-
   return (
     <Tab.Navigator>
-      <Tab.Screen
-        name="People"
-        component={PeopleScreen}
-        options={{ headerShown: false }}
-      />
-      <Tab.Screen
-        name="Films"
-        component={FilmsScreen}
-        options={{ headerShown: false }}
-      />
-      <Tab.Screen
-        name="Vehicles"
-        component={VehiclesScreen}
-        options={{ headerShown: false }}
-      />
+      <Tab.Screen name="People" component={PeopleScreen} />
+      <Tab.Screen name="Films" component={FilmsScreen} />
+      <Tab.Screen name="Vehicles" component={VehiclesScreen} />
+      <Tab.Screen name="Add Item" component={AddItemScreen} />
     </Tab.Navigator>
   );
 }

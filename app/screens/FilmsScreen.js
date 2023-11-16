@@ -2,11 +2,21 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 
-export default function FilmsScreen({ navigation }) {
+let x = [];
+
+export default function FilmsScreen({ route, navigation }) {
   const [filmData, setFilmData] = useState([]);
+  const [postData, setPostData] = useState([]);
   useEffect(() => {
     getFilms();
-  }, []);
+    if (route.params?.post) {
+      console.log("Yes");
+      x.push(route.params?.post);
+      setPostData(x);
+    } else {
+      console.log("No");
+    }
+  }, [route.params?.post]);
   const getFilms = async () => {
     try {
       //let response = await fetch("https://fakestoreapi.com/products/"); // this one works
@@ -24,6 +34,16 @@ export default function FilmsScreen({ navigation }) {
     <View style={{ flex: 1 }}>
       <FlatList
         data={filmData}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => navigation.push("FilmsDetails", item)}
+          >
+            <Text>{item.title}</Text>
+          </TouchableOpacity>
+        )}
+      />
+      <FlatList
+        data={postData}
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => navigation.push("FilmsDetails", item)}
