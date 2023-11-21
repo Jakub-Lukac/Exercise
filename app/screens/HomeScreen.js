@@ -17,35 +17,153 @@ import FilmsScreen from "./FilmsScreen";
 import VehiclesScreen from "./VehiclesScreen";
 import AddItemScreen from "./AddItemScreen";
 
+import colorPallete from "../config/colorPallete";
+
 function HomeScreen({ props }) {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="People" component={PeopleScreen} />
-      <Tab.Screen name="Films" component={FilmsScreen} />
-      <Tab.Screen name="Vehicles" component={VehiclesScreen} />
-      <Tab.Screen name="Add Item" component={AddItemScreen} />
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: "500",
+        },
+        tabBarActiveTintColor: colorPallete.backgroundColor,
+        tabBarInactiveTintColor: "#444b69",
+        tabBarIcon: ({ focused }) => {
+          if (route.name === "People") {
+            if (focused) {
+              return (
+                <View>
+                  <Image
+                    source={require("../assets/user.png")}
+                    resizeMode="contain"
+                    style={{ width: 25 }}
+                  />
+                </View>
+              );
+            } else {
+              return (
+                <View>
+                  <Image
+                    source={require("../assets/user-outlined.png")}
+                    resizeMode="contain"
+                    style={{ width: 25 }}
+                  />
+                </View>
+              );
+            }
+          } else if (route.name === "Films") {
+            if (focused) {
+              return (
+                <View>
+                  <Image
+                    source={require("../assets/pop-corn.png")}
+                    resizeMode="contain"
+                    style={{ width: 25 }}
+                  />
+                </View>
+              );
+            } else {
+              return (
+                <View>
+                  <Image
+                    source={require("../assets/pop-corn-outlined.png")}
+                    resizeMode="contain"
+                    style={{ width: 25 }}
+                  />
+                </View>
+              );
+            }
+          } else if (route.name === "Vehicles") {
+            if (focused) {
+              return (
+                <View>
+                  <Image
+                    source={require("../assets/spacecraft.png")}
+                    resizeMode="contain"
+                    style={{ width: 25 }}
+                  />
+                </View>
+              );
+            } else {
+              return (
+                <View>
+                  <Image
+                    source={require("../assets/spacecraft-outlined.png")}
+                    resizeMode="contain"
+                    style={{ width: 25 }}
+                  />
+                </View>
+              );
+            }
+          } else {
+            if (focused) {
+              return (
+                <View>
+                  <Image
+                    source={require("../assets/add.png")}
+                    resizeMode="contain"
+                    style={{ width: 25 }}
+                  />
+                </View>
+              );
+            } else {
+              return (
+                <View>
+                  <Image
+                    source={require("../assets/add-outlined.png")}
+                    resizeMode="contain"
+                    style={{ width: 25 }}
+                  />
+                </View>
+              );
+            }
+          }
+
+          // You can return any component that you like here!
+          //return <Ionicons name={iconName} size={size} color={color} />;
+        },
+      })}
+    >
+      <Tab.Screen
+        name="People"
+        component={PeopleScreen}
+        options={{
+          headerStyle: { backgroundColor: colorPallete.peopleColor },
+          headerTitleStyle: { color: "white" },
+        }}
+      />
+      <Tab.Screen
+        name="Films"
+        component={FilmsScreen}
+        options={{
+          headerStyle: { backgroundColor: colorPallete.filmsColor },
+          headerTitleStyle: { color: "white" },
+        }}
+      />
+      <Tab.Screen
+        name="Vehicles"
+        component={VehiclesScreen}
+        options={{
+          headerStyle: { backgroundColor: colorPallete.vehiclesColor },
+          headerTitleStyle: { color: "white" },
+        }}
+      />
+      <Tab.Screen
+        name="Add Item"
+        component={AddItemScreen}
+        options={{
+          headerStyle: {
+            backgroundColor: colorPallete.backgroundColor,
+            elevation: 0,
+          },
+          headerTitleStyle: { color: "white" },
+        }}
+      />
     </Tab.Navigator>
   );
 }
 
 const Tab = createBottomTabNavigator();
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 200,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  loginButton: {
-    borderRadius: 12,
-    backgroundColor: "#360e15",
-    marginTop: 20,
-    alignItems: "center",
-    padding: 15,
-  },
-  text: {
-    color: "white",
-  },
-});
 
 export default HomeScreen;

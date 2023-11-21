@@ -1,6 +1,14 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
+
+import colorPallete from "../config/colorPallete";
 
 let x = [];
 
@@ -31,14 +39,15 @@ export default function VehiclesScreen({ route, navigation }) {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       <FlatList
         data={vehiclesData}
         renderItem={({ item }) => (
           <TouchableOpacity
+            style={styles.button}
             onPress={() => navigation.push("VehiclesDetails", item)}
           >
-            <Text>{item.name}</Text>
+            <Text style={styles.text}>{item.name}</Text>
           </TouchableOpacity>
         )}
       />
@@ -55,3 +64,24 @@ export default function VehiclesScreen({ route, navigation }) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: colorPallete.backgroundColor,
+  },
+  text: {
+    color: colorPallete.vehiclesColor,
+    fontWeight: "900",
+  },
+  button: {
+    marginTop: 10,
+    backgroundColor: "#ad7d37",
+    padding: 15,
+    alignItems: "center",
+    borderRadius: 8,
+    borderColor: "black",
+    borderWidth: 1,
+  },
+});

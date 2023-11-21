@@ -1,6 +1,15 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  StyleSheet,
+  ImageBackground,
+} from "react-native";
+
+import colorPallete from "../config/colorPallete";
 
 let x = [];
 
@@ -24,6 +33,7 @@ export default function PeopleScreen({ route, navigation }) {
       let response = await fetch("https://swapi.dev/api/people/");
       let resData = await response.json();
       setData(resData.results);
+
       console.log("Works");
       console.log(resData.results);
     } catch (error) {
@@ -32,14 +42,15 @@ export default function PeopleScreen({ route, navigation }) {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       <FlatList
         data={data}
         renderItem={({ item }) => (
           <TouchableOpacity
+            style={styles.button}
             onPress={() => navigation.push("PeopleDetails", item)}
           >
-            <Text>{item.name}</Text>
+            <Text style={styles.text}>{item.name}</Text>
           </TouchableOpacity>
         )}
       />
@@ -49,10 +60,31 @@ export default function PeopleScreen({ route, navigation }) {
           <TouchableOpacity
             onPress={() => navigation.push("PeopleDetails", item)}
           >
-            <Text>{item.name}</Text>
+            <Text style={styles.text}>{item.name}</Text>
           </TouchableOpacity>
         )}
       />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: colorPallete.backgroundColor,
+  },
+  text: {
+    color: "#d8dfe1",
+    fontWeight: "900",
+  },
+  button: {
+    marginTop: 10,
+    backgroundColor: colorPallete.peopleColor,
+    padding: 15,
+    alignItems: "center",
+    borderRadius: 8,
+    borderColor: "black",
+    borderWidth: 1,
+  },
+});

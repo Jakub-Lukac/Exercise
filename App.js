@@ -6,10 +6,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import LoginScreen from "./app/screens/LoginScreen";
 import HomeScreen from "./app/screens/HomeScreen";
-import DetailsScreen from "./app/screens/PeopleDetailsScreen";
-import PeopleScreen from "./app/screens/PeopleScreen";
-import FilmsScreen from "./app/screens/FilmsScreen";
-import VehiclesScreen from "./app/screens/VehiclesScreen";
 import PeopleDetailsScreen from "./app/screens/PeopleDetailsScreen";
 import FilmsDetailsScreen from "./app/screens/FilmsDetailScreen";
 import VehiclesDetailsScreen from "./app/screens/VehiclesDetailsScreen";
