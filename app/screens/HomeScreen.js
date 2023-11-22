@@ -52,7 +52,7 @@ function HomeScreen({ props }) {
                 </View>
               );
             }
-          } else if (route.name === "Films") {
+          } else if (route.name === "Movies") {
             if (focused) {
               return (
                 <View>
@@ -134,7 +134,7 @@ function HomeScreen({ props }) {
         }}
       />
       <Tab.Screen
-        name="Films"
+        name="Movies"
         component={FilmsScreen}
         options={{
           headerStyle: { backgroundColor: colorPallete.filmsColor },

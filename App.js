@@ -11,6 +11,8 @@ import FilmsDetailsScreen from "./app/screens/FilmsDetailScreen";
 import VehiclesDetailsScreen from "./app/screens/VehiclesDetailsScreen";
 import AddItemScreen from "./app/screens/AddItemScreen";
 
+import colorPallete from "./app/config/colorPallete";
+
 export default function App() {
   return (
     <View style={styles.container}>
@@ -24,22 +26,37 @@ export default function App() {
           <Stack.Screen
             name="Home"
             component={HomeScreen}
-            options={{ title: "Home", headerShown: false }}
+            options={{
+              title: "Home",
+              headerShown: false,
+            }}
           />
           <Stack.Screen
             name="PeopleDetails"
             component={PeopleDetailsScreen}
-            options={{ title: "People Details" }}
+            options={{
+              title: "People Details",
+              headerStyle: { backgroundColor: colorPallete.peopleColor },
+              headerTitleStyle: { color: "white" },
+            }}
           />
           <Stack.Screen
             name="FilmsDetails"
             component={FilmsDetailsScreen}
-            options={{ title: "Films Details" }}
+            options={{
+              title: "Movie Details",
+              headerStyle: { backgroundColor: colorPallete.filmsColor },
+              headerTitleStyle: { color: "white" },
+            }}
           />
           <Stack.Screen
             name="VehiclesDetails"
             component={VehiclesDetailsScreen}
-            options={{ title: "Vehicles Details" }}
+            options={{
+              title: "Vehicles Details",
+              headerStyle: { backgroundColor: colorPallete.vehiclesColor },
+              headerTitleStyle: { color: "white" },
+            }}
           />
           <Stack.Screen
             name="AddItemScreen"

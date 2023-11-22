@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     backgroundColor: colorPallete.backgroundColor,
   },
   text: {
-    color: "#d8dfe1",
+    color: colorPallete.textColor,
     fontWeight: "900",
   },
   button: {

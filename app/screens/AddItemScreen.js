@@ -19,11 +19,11 @@ export default function AddItemScreen({ route, navigation }) {
   return (
     <View style={styles.container}>
       <AddItemComponent
-        title="P R I D A N I E  O S O B Y"
-        firstPlaceHolder="Meno osoby"
+        title="A D D  P E R S O N"
+        firstPlaceHolder="Person name"
         firstInput={addPeopleName}
         firstInputController={setPeopleName}
-        secondPlaceHolder="Vek osoby"
+        secondPlaceHolder="Person age"
         secondInput={addPeopleHeight}
         secondInputController={setPeopleHeight}
         handlePress={() => {
@@ -38,16 +38,16 @@ export default function AddItemScreen({ route, navigation }) {
             merge: true,
           });
         }}
-        buttonTitle="P R I D A T"
+        buttonTitle="A D D"
         itemColor="rgb(82, 141, 177)"
         itemColorWithOpacity="rgba(82, 141, 177, 0.3)"
       />
       <AddItemComponent
-        title="P R I D A N I E  F I L M U"
-        firstPlaceHolder="Nazov Filmu"
+        title="A D D  M O V I E"
+        firstPlaceHolder="Movie Name"
         firstInput={addFilmsTitle}
         firstInputController={setFilmsTitle}
-        secondPlaceHolder="Vek osoby"
+        secondPlaceHolder="Episode number"
         secondInput={addFilmsEpisodeId}
         secondInputController={setFilmsEpisodeId}
         handlePress={() => {
@@ -62,16 +62,16 @@ export default function AddItemScreen({ route, navigation }) {
             merge: true,
           });
         }}
-        buttonTitle="P R I D A T"
+        buttonTitle="A D D"
         itemColor="rgb(65, 125, 108)"
         itemColorWithOpacity="rgba(65, 125, 108, 0.3)"
       />
       <AddItemComponent
-        title="P R I D A N I E  V O Z I D L A"
-        firstPlaceHolder="Nazov vozidla"
+        title="A D D  V E H I C L E"
+        firstPlaceHolder="Manufacturer"
         firstInput={addVehiclesName}
         firstInputController={setVehiclesName}
-        secondPlaceHolder="Cena vozidla"
+        secondPlaceHolder="Cost in credits"
         secondInput={addVehiclesCost}
         secondInputController={setVehiclesCost}
         handlePress={() => {
@@ -86,7 +86,7 @@ export default function AddItemScreen({ route, navigation }) {
             merge: true,
           });
         }}
-        buttonTitle="P R I D A T"
+        buttonTitle="A D D"
         itemColor="rgb(173, 125, 55)"
         itemColorWithOpacity="rgba(173, 125, 55, 0.3)"
       />
