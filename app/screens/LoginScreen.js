@@ -10,6 +10,7 @@ import {
   TouchableHighlight,
 } from "react-native";
 
+import colorPallete from "../config/colorPallete";
 
 function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -72,19 +73,21 @@ function LoginScreen({ navigation }) {
           source={require("../assets/logo.png")}
         />
 
-        <Text>{errors["email"]}</Text>
+        <Text style={styles.errorStyle}>{errors["email"]}</Text>
         <TextInput
           style={styles.input}
           placeholder="Email"
+          placeholderTextColor={colorPallete.textColor}
           keyboardType="email-address"
           value={email}
           onChangeText={setEmail}
         ></TextInput>
 
-        <Text>{errors["password"]}</Text>
+        <Text style={styles.errorStyle}>{errors["password"]}</Text>
         <TextInput
           style={styles.input}
           placeholder="Password"
+          placeholderTextColor={colorPallete.textColor}
           value={password}
           onChangeText={setPassword}
           secureTextEntry // set to true
@@ -116,11 +119,12 @@ const styles = StyleSheet.create({
     height: 300,
   },
   input: {
+    color: colorPallete.textColor,
     height: 60,
     borderRadius: 8,
     borderWidth: 2,
-    borderColor: "#fffdef",
-    backgroundColor: "#fffdd0",
+    borderColor: colorPallete.loginInputColor,
+    backgroundColor: colorPallete.loginInputColorOpacity,
     padding: 10,
     margin: 10,
     fontSize: 15,
@@ -128,14 +132,18 @@ const styles = StyleSheet.create({
   },
   loginButton: {
     borderRadius: 12,
-    backgroundColor: "#360e15",
-    marginTop: 20,
+    backgroundColor: colorPallete.backgroundColor,
+    marginTop: 70,
     alignItems: "center",
     padding: 15,
   },
   text: {
     color: "#fff",
     fontSize: 30,
+    fontWeight: "800",
+  },
+  errorStyle: {
+    color: colorPallete.errorColor,
     fontWeight: "800",
   },
 });

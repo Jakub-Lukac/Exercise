@@ -10,20 +10,17 @@ import {
 
 import colorPallete from "../config/colorPallete";
 
-let x = [];
-
 export default function VehiclesScreen({ route, navigation }) {
   const [vehiclesData, setVehiclesData] = useState([]);
-  const [postData, setPostData] = useState([]);
+
   useEffect(() => {
     getVehicles();
-    if (route.params?.post) {
-      console.log("Yes");
-      x.push(route.params?.post);
-      setPostData(x);
-    } else {
-      console.log("No");
-    }
+  }, []);
+  useEffect(() => {
+    let newData = route.params?.post
+      ? [...vehiclesData, route.params?.post]
+      : [...vehiclesData];
+    setVehiclesData(newData);
   }, [route.params?.post]);
   const getVehicles = async () => {
     try {
@@ -32,7 +29,6 @@ export default function VehiclesScreen({ route, navigation }) {
       let resData = await response.json();
       setVehiclesData(resData.results);
       console.log("Works");
-      console.log(resData.results);
     } catch (error) {
       console.log("UPPS " + error);
     }
@@ -48,16 +44,6 @@ export default function VehiclesScreen({ route, navigation }) {
             onPress={() => navigation.push("VehiclesDetails", item)}
           >
             <Text style={styles.text}>{item.name}</Text>
-          </TouchableOpacity>
-        )}
-      />
-      <FlatList
-        data={postData}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => navigation.push("VehiclesDetails", item)}
-          >
-            <Text>{item.name}</Text>
           </TouchableOpacity>
         )}
       />

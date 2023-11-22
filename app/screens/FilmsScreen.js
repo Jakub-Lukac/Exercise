@@ -10,20 +10,17 @@ import {
 
 import colorPallete from "../config/colorPallete.js";
 
-let x = [];
-
 export default function FilmsScreen({ route, navigation }) {
   const [filmData, setFilmData] = useState([]);
-  const [postData, setPostData] = useState([]);
+
   useEffect(() => {
     getFilms();
-    if (route.params?.post) {
-      console.log("Yes");
-      x.push(route.params?.post);
-      setPostData(x);
-    } else {
-      console.log("No");
-    }
+  }, []);
+  useEffect(() => {
+    let newData = route.params?.post
+      ? [...filmData, route.params?.post]
+      : [...filmData];
+    setFilmData(newData);
   }, [route.params?.post]);
   const getFilms = async () => {
     try {
@@ -32,7 +29,6 @@ export default function FilmsScreen({ route, navigation }) {
       let resData = await response.json();
       setFilmData(resData.results);
       console.log("Works");
-      console.log(resData.results);
     } catch (error) {
       console.log("UPPS " + error);
     }
@@ -48,16 +44,6 @@ export default function FilmsScreen({ route, navigation }) {
             onPress={() => navigation.push("FilmsDetails", item)}
           >
             <Text style={styles.text}>{item.title}</Text>
-          </TouchableOpacity>
-        )}
-      />
-      <FlatList
-        data={postData}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => navigation.push("FilmsDetails", item)}
-          >
-            <Text>{item.title}</Text>
           </TouchableOpacity>
         )}
       />

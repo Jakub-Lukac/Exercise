@@ -55,7 +55,7 @@ export default function AddItemScreen({ route, navigation }) {
           secondInputController={setFilmsEpisodeId}
           handlePress={() => {
             navigation.navigate({
-              name: "Films",
+              name: "Movies",
               params: {
                 post: {
                   title: addFilmsTitle,
@@ -79,11 +79,11 @@ export default function AddItemScreen({ route, navigation }) {
           secondInputController={setVehiclesCost}
           handlePress={() => {
             navigation.navigate({
-              name: "Films",
+              name: "Vehicles",
               params: {
                 post: {
                   manufacturer: addVehiclesName,
-                  cost_in_credits: addPeopleHeight,
+                  cost_in_credits: addVehiclesCost,
                 },
               },
               merge: true,
