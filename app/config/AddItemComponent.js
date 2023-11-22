@@ -44,6 +44,7 @@ const AddItemComponent = (props) => {
     },
     button: {
       marginTop: 5,
+      marginBottom: 10,
       backgroundColor: itemColor,
       padding: 10,
       borderRadius: 5,
