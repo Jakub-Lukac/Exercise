@@ -27,8 +27,11 @@ function HomeScreen({ props }) {
           fontSize: 12,
           fontWeight: "500",
         },
-        tabBarActiveTintColor: colorPallete.backgroundColor,
-        tabBarInactiveTintColor: "#444b69",
+        tabBarStyle: {
+          backgroundColor: colorPallete.tabBarBackgroundColor,
+        },
+        tabBarActiveTintColor: colorPallete.textColor,
+        tabBarInactiveTintColor: colorPallete.textInactiveColor,
         tabBarIcon: ({ focused }) => {
           if (route.name === "People") {
             if (focused) {

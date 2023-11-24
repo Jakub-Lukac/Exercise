@@ -6,12 +6,14 @@ import {
   FlatList,
   TouchableOpacity,
   StyleSheet,
+  ActivityIndicator,
 } from "react-native";
 
 import colorPallete from "../config/colorPallete.js";
 
 export default function FilmsScreen({ route, navigation }) {
   const [filmData, setFilmData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getFilms();
@@ -28,6 +30,7 @@ export default function FilmsScreen({ route, navigation }) {
       let response = await fetch("https://swapi.dev/api/films/");
       let resData = await response.json();
       setFilmData(resData.results);
+      setIsLoading(false);
       console.log("Works");
     } catch (error) {
       console.log("UPPS " + error);
@@ -36,17 +39,21 @@ export default function FilmsScreen({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={filmData}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.push("FilmsDetails", item)}
-          >
-            <Text style={styles.text}>{item.title}</Text>
-          </TouchableOpacity>
-        )}
-      />
+      {isLoading ? (
+        <ActivityIndicator size={"large"} color={colorPallete.filmsColor} />
+      ) : (
+        <FlatList
+          data={filmData}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.push("FilmsDetails", item)}
+            >
+              <Text style={styles.text}>{item.title}</Text>
+            </TouchableOpacity>
+          )}
+        />
+      )}
     </View>
   );
 }
@@ -55,6 +62,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+    justifyContent: "center",
     backgroundColor: colorPallete.backgroundColor,
   },
   text: {

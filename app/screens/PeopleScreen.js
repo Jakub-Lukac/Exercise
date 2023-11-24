@@ -7,12 +7,14 @@ import {
   TouchableOpacity,
   StyleSheet,
   ImageBackground,
+  ActivityIndicator,
 } from "react-native";
 
 import colorPallete from "../config/colorPallete";
 
 export default function PeopleScreen({ route, navigation }) {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getData();
@@ -37,6 +39,7 @@ export default function PeopleScreen({ route, navigation }) {
         ? [...resData.results, route.params?.post]
         : [...resData.results];*/
       setData(resData.results);
+      setIsLoading(false);
       console.log("Works");
       //console.log(resData.results);
     } catch (error) {
@@ -46,17 +49,21 @@ export default function PeopleScreen({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={data}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.push("PeopleDetails", item)}
-          >
-            <Text style={styles.text}>{item.name}</Text>
-          </TouchableOpacity>
-        )}
-      />
+      {isLoading ? (
+        <ActivityIndicator size={"large"} color={colorPallete.peopleColor} />
+      ) : (
+        <FlatList
+          data={data}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.push("PeopleDetails", item)}
+            >
+              <Text style={styles.text}>{item.name}</Text>
+            </TouchableOpacity>
+          )}
+        />
+      )}
     </View>
   );
 }
@@ -65,6 +72,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+    justifyContent: "center",
     backgroundColor: colorPallete.backgroundColor,
   },
   text: {

@@ -9,6 +9,7 @@ import {
   ScrollView,
 } from "react-native";
 import AddItemComponent from "../config/AddItemComponent";
+import colorPallete from "../config/colorPallete";
 
 export default function AddItemScreen({ route, navigation }) {
   const [addPeopleName, setPeopleName] = useState("");
@@ -40,10 +41,14 @@ export default function AddItemScreen({ route, navigation }) {
               },
               merge: true,
             });
+            /*setPeopleName("");
+            setPeopleHeight("");
+            does not work as intended
+            */
           }}
           buttonTitle="A D D"
-          itemColor="rgb(82, 141, 177)"
-          itemColorWithOpacity="rgba(82, 141, 177, 0.3)"
+          itemColor={colorPallete.peopleColor}
+          itemColorWithOpacity={colorPallete.peopleColorOpacity}
         />
         <AddItemComponent
           title="A D D  M O V I E"
@@ -64,10 +69,12 @@ export default function AddItemScreen({ route, navigation }) {
               },
               merge: true,
             });
+            /*setFilmsTitle("");
+            setFilmsEpisodeId("");*/
           }}
           buttonTitle="A D D"
-          itemColor="rgb(65, 125, 108)"
-          itemColorWithOpacity="rgba(65, 125, 108, 0.3)"
+          itemColor={colorPallete.filmsColor}
+          itemColorWithOpacity={colorPallete.filmsColorOpacity}
         />
         <AddItemComponent
           title="A D D  V E H I C L E"
@@ -88,10 +95,12 @@ export default function AddItemScreen({ route, navigation }) {
               },
               merge: true,
             });
+            /*setVehiclesName("");
+            setVehiclesCost("");*/
           }}
           buttonTitle="A D D"
-          itemColor="rgb(173, 125, 55)"
-          itemColorWithOpacity="rgba(173, 125, 55, 0.3)"
+          itemColor={colorPallete.vehiclesColor}
+          itemColorWithOpacity={colorPallete.vehiclesColorOpacity}
         />
       </View>
     </ScrollView>
@@ -101,11 +110,11 @@ export default function AddItemScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   keyboard: {
     flex: 1,
-    backgroundColor: "#1c2020",
+    backgroundColor: colorPallete.backgroundColor,
   },
   container: {
     marginTop: 30,
-    backgroundColor: "#1c2020",
+    backgroundColor: colorPallete.backgroundColor,
     justifyContent: "space-evenly",
     alignItems: "center",
   },

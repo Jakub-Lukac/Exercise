@@ -6,12 +6,14 @@ import {
   FlatList,
   TouchableOpacity,
   StyleSheet,
+  ActivityIndicator,
 } from "react-native";
 
 import colorPallete from "../config/colorPallete";
 
 export default function VehiclesScreen({ route, navigation }) {
   const [vehiclesData, setVehiclesData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getVehicles();
@@ -28,6 +30,7 @@ export default function VehiclesScreen({ route, navigation }) {
       let response = await fetch("https://swapi.dev/api/vehicles/");
       let resData = await response.json();
       setVehiclesData(resData.results);
+      setIsLoading(false);
       console.log("Works");
     } catch (error) {
       console.log("UPPS " + error);
@@ -36,17 +39,21 @@ export default function VehiclesScreen({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={vehiclesData}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.push("VehiclesDetails", item)}
-          >
-            <Text style={styles.text}>{item.name}</Text>
-          </TouchableOpacity>
-        )}
-      />
+      {isLoading ? (
+        <ActivityIndicator size={"large"} color={colorPallete.vehiclesColor} />
+      ) : (
+        <FlatList
+          data={vehiclesData}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.push("VehiclesDetails", item)}
+            >
+              <Text style={styles.text}>{item.name}</Text>
+            </TouchableOpacity>
+          )}
+        />
+      )}
     </View>
   );
 }
@@ -55,6 +62,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+    justifyContent: "center",
     backgroundColor: colorPallete.backgroundColor,
   },
   text: {
